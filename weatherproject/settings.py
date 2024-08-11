@@ -82,13 +82,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'weatherproject.wsgi.application'
 
 AUTHENTICATION_BACKENDS = [
-    # 'django.contrib.auth.backends.ModelBackend',
+    
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
 
 DATABASES = {
     'default': {
@@ -104,8 +103,7 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -123,8 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
+
 
 LANGUAGE_CODE = 'en-us'
 
@@ -135,17 +132,19 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
+
 
 STATIC_URL = 'static/'
-# Add STATIC_ROOT to specify where static files should be collected
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# If you have additional static file locations, include them here
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'weatherapp', 'static'),
 ]
+
+if not DEBUG:
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -154,8 +153,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -176,8 +174,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "509471987979-8tbusepjsiksc6sdc96r22qa0336k9aa.apps.googleusercontent.com"
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"
+
 
 
 
