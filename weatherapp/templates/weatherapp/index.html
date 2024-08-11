@@ -217,6 +217,35 @@
         text-align: center;
       }
 
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px; /* Adjust this value as needed */
+      }
+
+      .responsive-logo {
+        width: 50px; /* Default size for larger screens */
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 0; /* Reset any right margin */
+      }
+
+      
+      @media (max-width: 768px) {
+        .logo-container {
+          justify-content: flex-start; 
+          margin-top: 10px; 
+          margin-bottom:7px;
+          padding-left: 23px; 
+        }
+
+        .responsive-logo {
+          width: 40px; 
+          height: 40px;
+        }
+      }
+
       .city-heading {
         color: var(--font-color);
         display: block;
@@ -719,15 +748,18 @@
 
       <div class="navbar-container navbar-light">
         <div class="nav_username">
-          <img
-            style="
-              width: 2.5pc;
-              height: 2.5pc;
-              border-radius: 50%;
-              margin-right: 40px;
-            "
-            src="https://img.freepik.com/premium-vector/weather-cloud-sun-rain-lightning-logo-design-symbol-icon-template_23729-1786.jpg"
-          />
+          <div class="logo-container">
+            <img
+              style="
+                width: 40px;
+                height: auto;
+                border-radius: 50%;
+                top: 20px;
+                left: 20px;
+              "
+              src="https://img.freepik.com/premium-vector/weather-cloud-sun-rain-lightning-logo-design-symbol-icon-template_23729-1786.jpg"
+            />
+          </div>
           <li>
             <h3 class="nav_h2">Zephyr</h3>
           </li>
