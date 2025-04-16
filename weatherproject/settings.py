@@ -14,7 +14,12 @@ from pathlib import Path
 import os
 import dj_database_url
 from decouple import config
+# # Add these at the top of your settings.py
+import os
+# from dotenv import load_dotenv
+from urllib.parse import urlparse
 
+# load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -47,6 +52,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +88,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'weatherproject.wsgi.application'
 
 AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
     
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
@@ -96,10 +103,23 @@ DATABASES = {
     }
 }
 
+
+
+# Ensure DATABASE_URL is loaded correctly
+tmpPostgres = urlparse(config("DATABASE_URL", default=""))
+
+if not tmpPostgres.scheme:
+    raise ValueError("Invalid DATABASE_URL. Please check your .env file.")
+
 DATABASES = {
-    'default': dj_database_url.parse(
-        config("DATABASE_URL")
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': tmpPostgres.path.lstrip('/'),
+        'USER': tmpPostgres.username,
+        'PASSWORD': tmpPostgres.password,
+        'HOST': tmpPostgres.hostname,
+        'PORT': tmpPostgres.port or 5432,
+    }
 }
 
 

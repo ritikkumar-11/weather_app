@@ -888,16 +888,7 @@
               </button>
               <button class="button button-large">{{ day }}</button>
             </div>
-            {% if user.is_authenticated %} {% else %}
-            <div class="login-content">
-              <a
-                style="text-decoration: none; padding-left: 15px"
-                href="{% provider_login_url 'google' %}"
-                class="city-heading"
-                >Login with Google</a
-              >
-            </div>
-            {% endif %}
+            
           </div>
         </div>
       </div>
